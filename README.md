@@ -1,5 +1,5 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file. -->
+<!-- README.md is generated from README.Rmd. Please edit that file.. -->
 <!-- badges: start -->
 <!-- badges: end -->
 <!-- Emprestei a função list_github_files() da Curso-R. (https://github.com/curso-r). A ideia desse readme emprestei da Curso-R. Achei excelente!-->
@@ -40,8 +40,9 @@ Amapá**.
 Os slides do minicurso **Visualização de dados com ggplot2 e extensões**
 estão detalhados a seguir.
 
-| Slide | Link |
-|:------|:-----|
+| Slide                             | Link                                                                        |
+|:----------------------------------|:----------------------------------------------------------------------------|
+| Slides/03-Visualizacao-Dados.html | <https://deivisonsouza.github.io/SIINGEF/Slides/03-Visualizacao-Dados.html> |
 
 # Conjunto de dados
 
@@ -54,8 +55,10 @@ brasileira.
 2 - **data.csv** → É simplesmente uma pequena amostra aleatória de
 IF100%.
 
-| Slide | Link |
-|:------|:-----|
+| Slide                    | Link                                                               |
+|:-------------------------|:-------------------------------------------------------------------|
+| Slides/data/UPA07DVS.csv | <https://deivisonsouza.github.io/SIINGEF/Slides/data/UPA07DVS.csv> |
+| Slides/data/data.csv     | <https://deivisonsouza.github.io/SIINGEF/Slides/data/data.csv>     |
 
 # Arquivos .R com códigos dos slides
 
