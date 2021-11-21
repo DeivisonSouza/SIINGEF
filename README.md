@@ -1,5 +1,5 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file.. -->
+<!-- README.md is generated from README.Rmd. Please edit that file. -->
 <!-- badges: start -->
 <!-- badges: end -->
 <!-- Emprestei a função list_github_files() da Curso-R. (https://github.com/curso-r). A ideia desse readme emprestei da Curso-R. Achei excelente!-->
@@ -26,19 +26,19 @@
 <img src="Slides/fig/slide-title/SIINGEF.jpg" width="500" align="middle" class="center">
 <div>
 
-# Minicurso: Visualização de Dados com ggplot2
+# Minicurso: Visualização de dados com ggplot2 e extensões
 
 Este repositório guarda os slides em .html, códigos R, arquivos .Rmd,
 figuras, conjunto de dados (e outros) utilizados no minicurso
-**Visualização de Dados com ggplot2** ministrado pelo
+**Visualização de dados com ggplot2 e extensões** ministrado pelo
 **Prof. Dr. Deivison Venicio Souza** no **I Simpósio Internacional
 Interdisciplinar em Gestão Ambiental e Engenharia Florestal do Sul do
 Amapá**.
 
 # Slides do minicurso
 
-Os slides do minicurso **Visualização de Dados com ggplot2** estão
-detalhados a seguir.
+Os slides do minicurso **Visualização de dados com ggplot2 e extensões**
+estão detalhados a seguir.
 
 | Slide | Link |
 |:------|:-----|

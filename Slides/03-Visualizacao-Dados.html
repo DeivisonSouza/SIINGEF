@@ -1,0 +1,2941 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Minicurso: Visualização de dados com ggplot2 e extensões</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Prof. Dr. Deivison Venicio Souza" />
+    <script src="03-Visualizacao-Dados_files/header-attrs-2.7/header-attrs.js"></script>
+    <link href="03-Visualizacao-Dados_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <script src="03-Visualizacao-Dados_files/fabric-4.3.1/fabric.min.js"></script>
+    <link href="03-Visualizacao-Dados_files/xaringanExtra-scribble-0.0.1/scribble.css" rel="stylesheet" />
+    <script src="03-Visualizacao-Dados_files/xaringanExtra-scribble-0.0.1/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <link href="03-Visualizacao-Dados_files/xaringanExtra-extra-styles-0.2.6/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xe594f48f3cb40c8adc99afa281590ce","expires":1}</script>
+    <script src="03-Visualizacao-Dados_files/himalaya-1.1.0/himalaya.js"></script>
+    <script src="03-Visualizacao-Dados_files/js-cookie-3.0.0/js.cookie.js"></script>
+    <link href="03-Visualizacao-Dados_files/editable-0.2.6/editable.css" rel="stylesheet" />
+    <script src="03-Visualizacao-Dados_files/editable-0.2.6/editable.js"></script>
+    <script src="03-Visualizacao-Dados_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="03-Visualizacao-Dados_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="03-Visualizacao-Dados_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <link href="03-Visualizacao-Dados_files/font-awesome-animation-1.0/font-awesome-animation-emi.css" rel="stylesheet" />
+    <script src="03-Visualizacao-Dados_files/fontawesome-5.0.13/js/fontawesome-all.min.js"></script>
+    <script src="03-Visualizacao-Dados_files/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+    <script src="03-Visualizacao-Dados_files/jquery-3.5.1/jquery.min.js"></script>
+    <link href="03-Visualizacao-Dados_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="03-Visualizacao-Dados_files/datatables-binding-0.17/datatables.js"></script>
+    <link href="03-Visualizacao-Dados_files/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="03-Visualizacao-Dados_files/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="03-Visualizacao-Dados_files/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+    <link href="03-Visualizacao-Dados_files/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+    <script src="03-Visualizacao-Dados_files/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+    </script>
+    <style>
+    .mjx-mrow a {
+      color: black;
+      pointer-events: none;
+      cursor: default;
+    }
+    </style>
+    <link rel="stylesheet" href="assets/sydney-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets/slide-title/sydney-title.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: title-slide, center, middle
+background-image: url(fig/slide-title/ufpa2.png), url(fig/slide-title/SIINGEF.jpg), url(fig/slide-title/ifap.png), url(fig/slide-title/img3.png)
+background-position: 90% 90%, 50% 10%, 10% 90%
+background-size: 250px, 250px, 200px, cover
+
+
+
+
+
+&lt;style type="text/css"&gt;
+.with-logo::before {
+	content: '';
+	width: 120px;
+	height: 120px;
+	position: absolute;
+	bottom: 1.3em;
+	right: -0.3em;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.logo-ufpa::before {
+	background-image: url(fig/slide-title/ufpa.png);
+}
+&lt;/style&gt;
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 210px;
+height: 210px;
+z-index: 0;
+background-image: url(fig/slide-title/SIINGEF.jpg);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1.5em;right:0.6em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+
+
+
+
+&lt;!-- title-slide --&gt;
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+## .font90[Visualização de dados &lt;br&gt; com ggplot2 e extensões] <span>&lt;i class="fab  fa-pagelines faa-horizontal animated " style=" color:green;"&gt;&lt;/i&gt;</span>
+
+#### **Prof. Dr. Deivison Venicio Souza**
+##### Universidade Federal do Pará (UFPA) 
+##### Faculdade de Engenharia Florestal
+##### E-mail: deivisonvs@ufpa.br
+&lt;br&gt;
+##### 1ª versão: 22/setembro/2021 &lt;br&gt; (Atualizado em: 21/novembro/2021)
+
+---
+
+layout: true
+class: with-logo logo-ufpa
+&lt;div class="my-header"&gt;&lt;/div&gt;
+&lt;div class="my-footer"&gt;&lt;span&gt;Prof. Dr. Deivison Venicio Souza (E-mail: deivisonvs@ufpa.br)&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp; &lt;div2&gt;Minicurso: Visualização de dados com ggplot2 e extensões&lt;/div2&gt; &lt;/div&gt;
+
+---
+
+&lt;br&gt;
+## Objetivos
+&lt;br&gt;&lt;br&gt;
+Ao final desta terceira parte (.blue[Visualização de dados com ggplot2 e extensões]) espera-se que os participantes possam alcançar conhecimentos para...
+&lt;br&gt;&lt;br&gt;
+
+* Construir gráficos no R usando funções do pacote **ggplot2**; e
+* Combinar gráficos usando o pacote **Patchwork**.
+&lt;br&gt;&lt;br&gt;
+
+.pull-left-7[
+&lt;img src="https://tidyverse.tidyverse.org/articles/tidyverse-logo.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-left-7[
+&lt;img src="https://ggplot2.tidyverse.org/logo.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-left-7[
+&lt;img src="https://patchwork.data-imaginist.com/reference/figures/logo.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+&lt;br&gt;
+## Conteúdo
+
+.pull-left-10[
+.font80[
+**Parte 1 - Visualização de dados com .orange[ggplot2]**
+
+[1 - Motivação](#mot)
+
+[2 - O pacote ggplot2](#ggplot2)
+
+[3 - Conjunto de dados - IF100%](#data)
+
+[4 - Função ggplot()](#ggplot)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[4.1 - Camada base](#cb)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[4.2 - Especificando x e y](#xy)
+
+[5 - Gráfico de pontos (dispersão)](#point)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[5.1 - Adicionando linha de regressão](#alr)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[5.2 - Modificando a cor dos pontos](#mcp)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[5.3 - Modificando a forma dos pontos](#mfp)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[5.4 - Modificando a tamanho dos pontos](#mtp)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[5.5 - Personalizando a forma e a cor dos pontos](#pfcp)
+
+]
+]
+
+.pull-right-10[
+.pull-down[
+.font80[
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[5.6 - Modificando legendas](#ml)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[5.7 - Modificando títulos e escalas](#mte)
+
+[6 - Gráficos de barras](#gb)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[6.1 - Gráfico de contagem por categoria](#gcc)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[6.2 - Gráfico de média por categoria](#gmc)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[6.3 - Modificando cores das barras](#mcb)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[6.4 - Reordenando as barras](#rb)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[6.5 - Adicionando rótulos nas barras](#arb)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[6.6 - Representando duas (ou mais) variáveis](#rdv)
+
+[7 - Histograma e polígonos de frequências](#hist)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[7.1 - Controlando a largura da barra](#clb)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[7.2 - Compare distribuições entre categorias](#pol)
+
+]
+]
+]
+
+---
+
+&lt;br&gt;
+## Conteúdo
+
+.pull-left-10[
+.font80[
+**Parte 1 - Visualização de dados com .orange[ggplot2]** .green[**(cont.)**]
+
+[8 - Boxplots](#box)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[8.1 - Compare distribuições](#box)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[8.2 - Reordenando os BoxPlots](#rbox)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[8.3 - Adicione símbolo para representar a média](#meanbox)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[8.4 - Represente vários grupos](#rvg)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[8.5 - Adicione pontos representativos dos dados](#aprd)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[8.6 - Adicione cores aos pontos por categoria](#acpc)
+
+[9 - Matriz de painéis (facet)](#facet)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[9.1 - Represente categorias de uma varíavel](#rcv)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[9.2 - Represente categorias de duas (ou mais) variáveis](#rcdv)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[9.3 - Escalas dos eixos livres](#eel)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[9.4 - Modificando o texto do rótulo da faceta](#mtrf)
+
+[10 - Salve um ggplot](#save)
+
+]
+]
+
+
+.pull-right-10[
+.pull-down[
+.font80[
+**Parte 2 - Combinação de gráficos com .orange[Patchwork]**
+
+[1 - Combine gráficos com pacote "patchwork"](#patchwork)
+
+[2 - Uso de operadores matemáticos](#adicao)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[2.1 - Operador adição](#adicao)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[2.2 - Operador divisão (empilhar)](#divisao)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[2.2 - Operador barra vertical (lado a lado)](#barra)
+
+[3 - Disposição, área e legenda de subgráficos](#plotlayout)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[3.1 - Número de linhas e ordenação](#plotlayout)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[3.2 - Largura relativa dos subgráficos](#widths)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[3.3 - Altura relativa dos subgráficos](#heights)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[3.4 - Posição e remoção de legendas duplicadas](#guides)
+
+[4 - Gráfico dentro de outro gráfico](#inset)
+
+[5 - Adicione textos, títulos, tags](#annotation)
+
+]
+]
+]
+
+---
+
+layout: false
+name: conc
+class: inverse, top, right
+background-image: url(fig/slide-title/arara.jpg)
+background-size: cover
+
+.font200[**.yellow[Parte 1] &lt;br&gt; .white[Visualização de dados &lt;br&gt; com ggplot2]**]
+
+.left[.footnote[.white[Créditos: Imagem de IvaCastro por Pixabay].]]
+
+---
+
+layout: true
+class: with-logo logo-ufpa
+&lt;div class="my-header"&gt;&lt;/div&gt;
+&lt;div class="my-footer"&gt;&lt;span&gt;Prof. Dr. Deivison Venicio Souza (E-mail: deivisonvs@ufpa.br)&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp; &lt;div2&gt;Minicurso: Visualização de dados com ggplot2 e extensões&lt;/div2&gt; &lt;/div&gt;
+
+---
+name: mot
+&lt;br&gt;
+## Motivação
+
+.font90[
+- .blue[Dados] constituem uma representação usada para .blue[gerar informações sobre um fenômeno].
+- Os .blue[gráficos são representações visuais] úteis para exibir .blue[informações ocultas nos dados].
+- Representações visuais são .blue[melhor interpretadas] pelo cerébro humano.
+- A natureza da variável e o objetivo da análise, em geral, orientam a melhor representação visual.
+- O R-base possui diversas funções para visualização de dados. Por exemplo, .green[**plot()**], .green[**hist()**], .green[**barplot()**], .green[**boxplot()**], entre outras.
+- O tidyverse incorpora o pacote .blue[**ggplot2**], um framework sensacional para construção de gráficos elegantes.
+]
+&lt;br&gt;&lt;br&gt;
+
+.center[**O pacote .blue[ggplot2] será o nosso objeto de estudo!**]
+
+---
+name: ggplot2
+&lt;br&gt;
+## O pacote ggplot2 (tidyverse)
+&lt;br&gt;
+
+.font90[
+- O ggplot2 é um pacote para .blue[visualização de dados] disponível no R.
+- O pacote foi desenvolvido por .blue[Hadley Wickham], inspirado pelo livro .blue[**The Grammar of graphics**] (A gramática dos gráficos) de .blue[Leland Wilkinson].
+- A essência do ggplot2 é a construção de gráficos ".blue[camada por camada]".
+- O ggplot2 possui .blue[vantagens] frente ao R-base:
+  + É altamente customizável;
+  + É mais elegante (bonito);
+  + É muito intuitivo, devido a filosofia de camadas.
+]
+
+.pull-left-7[
+&lt;img src="https://ggplot2.tidyverse.org/logo.png" width="45%" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+name: data
+## Pacote ggplot2 (tidyverse)
+
+.font80[
+### Conjunto de dados - Amostra de Inventário Florestal 100%...
+]
+&lt;br&gt;
+
+.font80[
+.pull-left-4[
+
+```r
+data &lt;- readr::read_csv(file="data/UPA07DVS.csv") %&gt;%
+  mutate(DAP = round(CAP/pi, 2),
+         V = round(((DAP^2*pi)/40000)*HC*0.7, 4))
+
+set.seed(1000)
+
+data_sample &lt;- data %&gt;%
+  select(Nome_Especie, DAP, CAP, HC, QF, Selecao, V) %&gt;%
+  filter(Nome_Especie %in% c('Acapu', 'Andiroba',
+                             'Maçaranduba', 'Goiabão')) %&gt;%
+  group_by(Nome_Especie) %&gt;%
+  sample_n(50, replace = F)
+
+data_sample %&gt;% CustomDT # apenas p/ uma saída elegante da tabela
+```
+&lt;br&gt;
+
+**Vamos usar uma amostra de 4 espécies florestais de um IF100% para construir os gráficos...**
+
+**A base completa pode ser acessada em**: [IF100%](https://deivisonsouza.github.io/FL03034-EF/Slides/data/UPA07DVS.csv)
+
+]
+]
+
+.font80[
+.pull-right-4[
+<div id="htmlwidget-ab19ae77a83f6739f2e6" style="width:180px;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ab19ae77a83f6739f2e6">{"x":{"filter":"none","caption":"<caption><\/caption>","editable":{"target":"cell","disable":{"columns":null}},"data":[["Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Acapu","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Andiroba","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Goiabão","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba","Maçaranduba"],[59.21,49.97,56.66,76.39,52.52,54.11,41.38,50.61,46.47,92.31,47.75,54.11,66.85,46.15,57.3,40.11,49.34,48.38,49.02,49.02,56.66,48.38,70.03,50.93,51.57,54.11,85.94,47.75,57.93,57.3,44.88,59.84,55.07,40.11,85.94,45.84,54.11,50.29,57.3,50.93,52.84,55.07,54.11,54.11,62.07,54.11,51.88,56.34,63.66,50.93,48.38,49.02,73.21,46.15,44.88,61.43,42.97,52.52,47.75,60.48,52.52,50.93,48.7,55.7,55.7,48.06,45.84,43.93,50.93,43.93,47.75,47.75,70.66,50.29,57.93,47.75,48.7,47.11,47.11,44.56,63.66,43.61,39.79,54.11,44.56,50.93,46.15,67.48,45.52,42.34,50.93,60.48,44.56,50.93,52.52,53.48,54.11,44.56,70.03,52.52,46.47,46.15,63.66,51.88,59.84,74.8,47.75,50.93,63.66,44.56,49.97,70.03,61.12,54.11,70.03,59.21,55.7,42.97,56.02,48.38,52.84,54.11,49.34,42.65,69.39,44.56,63.66,50.29,50.29,48.38,44.56,46.79,73.21,59.52,55.7,70.03,49.34,49.66,54.75,60.48,86.58,48.7,49.34,59.84,53.48,56.02,65.57,54.75,63.66,96.45,71.62,44.25,58.89,61.75,95.49,78.94,57.3,49.34,90.4,51.57,76.39,54.11,66.85,74.8,56.34,44.56,63.34,56.34,51.57,92.31,69.07,63.66,63.66,49.02,61.75,81.17,71.94,57.93,50.93,65.25,76.08,40.43,94.86,76.39,82.76,95.49,54.11,64.3,76.39,42.97,70.03,61.43,45.2,47.75,47.75,44.56,63.66,61.75,39.79,50.29],[186,157,178,240,165,170,130,159,146,290,150,170,210,145,180,126,155,152,154,154,178,152,220,160,162,170,270,150,182,180,141,188,173,126,270,144,170,158,180,160,166,173,170,170,195,170,163,177,200,160,152,154,230,145,141,193,135,165,150,190,165,160,153,175,175,151,144,138,160,138,150,150,222,158,182,150,153,148,148,140,200,137,125,170,140,160,145,212,143,133,160,190,140,160,165,168,170,140,220,165,146,145,200,163,188,235,150,160,200,140,157,220,192,170,220,186,175,135,176,152,166,170,155,134,218,140,200,158,158,152,140,147,230,187,175,220,155,156,172,190,272,153,155,188,168,176,206,172,200,303,225,139,185,194,300,248,180,155,284,162,240,170,210,235,177,140,199,177,162,290,217,200,200,154,194,255,226,182,160,205,239,127,298,240,260,300,170,202,240,135,220,193,142,150,150,140,200,194,125,158],[13,10,12,16,20,11,8,15,13,21,10,14,13,15,16,15,13,9,12,15,14,13,12,12,10,10,15,10,15,10,9,9,10,13,13,15,15,13,13,17,10,14,16,10,13,13,13,15,17,14,17,18,17,15,16,12,13,15,20,17,16,12,13,16,19,17,15,18,12,12,12,14,15,13,20,15,15,7,16,14,14,10,15,15,13,15,15,15,13,15,17,16,11,20,10,13,16,11,14,18,15,15,20,12,1,18,18,17,19,17,13,21,17,18,18,19,17,17,16,18,18,19,17,13,20,18,17,21,17,14,16,16,19,19,15,17,16,18,14,16,19,16,17,14,16,13,19,17,17,13,18,14,19,14,19,17,10,17,15,14,18,17,17,18,17,17,18,17,16,17,13,12,17,20,17,18,18,18,15,20,17,17,15,18,17,23,14,17,19,15,17,22,10,20,17,14,18,18,11,17],[1,2,1,2,1,1,2,1,2,1,2,2,1,2,1,1,1,2,2,2,1,2,3,2,1,2,2,1,1,2,1,1,2,1,1,1,1,1,1,1,2,1,1,2,1,2,3,1,1,1,1,1,1,2,1,2,1,1,1,1,2,1,1,1,2,2,1,1,2,1,1,1,1,2,2,1,2,1,1,1,1,2,1,1,1,1,2,1,2,1,2,1,1,1,2,2,1,2,2,1,2,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,3,1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,2,2,1,1,1,1,2,1,1,1,1],["Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Explorar","Remanescente","Remanescente","Explorar","Remanescente","Remanescente","Remanescente","Explorar","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Explorar","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Explorar","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Explorar","Remanescente","Remanescente","Remanescente","Explorar","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Explorar","Remanescente","Remanescente","Remanescente","Explorar","Remanescente","Remanescente","Explorar","Remanescente","Remanescente","Explorar","Remanescente","Remanescente","Explorar","Remanescente","Remanescente","Explorar","Explorar","Remanescente","Remanescente","Explorar","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Explorar","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Explorar","Explorar","Remanescente","Explorar","Remanescente","Remanescente","Remanescente","Remanescente","Explorar","Remanescente","Remanescente","Explorar","Remanescente","Remanescente","Explorar","Remanescente","Remanescente","Explorar","Explorar","Remanescente","Remanescente","Remanescente","Explorar","Explorar","Remanescente","Remanescente","Remanescente","Remanescente","Explorar","Remanescente","Explorar","Explorar","Remanescente","Remanescente","Explorar","Remanescente","Remanescente","Remanescente","Explorar","Explorar","Explorar","Remanescente","Remanescente","Explorar","Explorar","Remanescente","Remanescente","Remanescente","Explorar","Remanescente","Explorar","Explorar","Explorar","Explorar","Remanescente","Explorar","Explorar","Remanescente","Explorar","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente","Remanescente"],[2.5057,1.3728,2.118,5.1331,3.033,1.7707,0.7531,2.1123,1.5434,9.838,1.2535,2.2536,3.194,1.7564,2.8881,1.3267,1.7399,1.1581,1.5853,1.9816,2.471,1.6729,3.2355,1.7113,1.4621,1.6097,6.0907,1.2535,2.7675,1.8051,0.9966,1.7718,1.6673,1.1498,5.2786,1.7329,2.4145,1.8076,2.3466,2.4243,1.535,2.3342,2.5755,1.6097,2.7536,2.0926,1.9237,2.6177,3.7877,1.9965,2.1876,2.378,5.0093,1.7564,1.7718,2.4896,1.3197,2.2747,2.5071,3.4187,2.4264,1.7113,1.6951,2.7291,3.2408,2.1588,1.7329,1.9098,1.7113,1.2732,1.5042,1.7549,4.1174,1.8076,3.69,1.8803,1.9559,0.8541,1.9522,1.5283,3.1192,1.0456,1.3057,2.4145,1.4191,2.1391,1.7564,3.7552,1.4809,1.4784,2.4243,3.2176,1.2008,2.8521,1.5165,2.0442,2.5755,1.2008,3.7747,2.7297,1.7808,1.7564,4.4561,1.7757,0.1969,5.5369,2.2564,2.4243,4.2333,1.8558,1.7846,5.6621,3.4914,2.8974,4.8532,3.6621,2.8997,1.7257,2.7605,2.3163,2.763,3.0584,2.2753,1.3001,5.2943,1.9649,3.7877,2.9199,2.3637,1.8016,1.7466,1.9258,5.5986,3.7006,2.5585,4.5836,2.1414,2.4405,2.3072,3.2176,7.8303,2.0862,2.2753,2.7561,2.5159,2.2429,4.4911,2.8016,3.7877,6.6487,5.0761,1.5071,3.6226,2.9349,9.5248,5.8241,1.8051,2.2753,6.7393,2.047,5.7748,2.7365,4.1768,5.5369,2.9667,1.8558,3.9702,2.9667,2.3394,7.9641,3.4097,2.6736,3.7877,2.6422,3.5638,6.5201,5.1215,3.321,2.1391,4.6814,5.4098,1.5277,7.4207,5.7748,6.4014,11.5301,2.2536,3.8642,6.0956,1.5227,4.5836,4.5643,1.1232,2.5071,2.131,1.5283,4.0105,3.7734,0.9575,2.3637]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Nome_Especie<\/th>\n      <th>DAP<\/th>\n      <th>CAP<\/th>\n      <th>HC<\/th>\n      <th>QF<\/th>\n      <th>Selecao<\/th>\n      <th>V<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"dom":"tip","autoWidth":false,"initComplete":"function(settings, json) {\n$(this.api().table().container()).css({'font-size': '9pt'});\n}","columnDefs":[{"className":"dt-right","targets":[1,2,3,4,6]}],"order":[],"orderClasses":false}},"evals":["options.initComplete"],"jsHooks":[]}</script>
+]
+]
+
+---
+name: ggplot
+## Pacote ggplot2 (tidyverse)
+&lt;br&gt;
+### Sintaxe Básica
+
+.pull-left-2[
+.font80[
+- A estrutura de dados deve ser um .blue[data.frame]. Não admite matrizes, vetores, e outros!
+- A função principal é .green[ggplot()].
+- Nesta função os argumentos básicos são:
+  + .blue[data]: argumento que recebe os dados no formato de **data.frame**.
+  + .blue[mapping]: argumento que recebe informações das variáveis (x e y) a serem usadas na plotagem. Esses argumentos são passados dentro da função .blue[aes()].
+&lt;br&gt;&lt;br&gt;
+
+Obs.: Se .blue[mapping] não for especificado na função .green[ggplot()], deve ser fornecido em cada camada adicionada ao gráfico.
+]
+]
+
+---
+
+## Pacote ggplot2 (tidyverse)
+&lt;br&gt;
+### Sintaxe Básica
+
+- Existem 3 formas de invocar a função .green[ggplot()]:
+
+.pull-left-8[
+.font80[
+
+.green[ggplot(.brown[df], aes(.blue[x], .blue[y], .blue[outras estéticas]))]
+&lt;br&gt;&lt;br&gt;
+
+- Método é recomendado quando dados de **um único data.frame** e também as **mesmas estéticas** são usadas nas camadas adicionadas.
+]
+]
+
+--
+
+.pull-left-8[
+.font80[
+.center[.green[ggplot(.brown[df])]]
+&lt;br&gt;
+
+- Método é recomendado quando dados de **um único data.frame** é usado pelas camadas adicionadas, mas as **estéticas variam de uma camada para outra**.
+
+]
+]
+
+--
+
+.pull-left-8[
+.font80[
+.center[.green[ggplot()]]
+&lt;br&gt;
+
+- Método é recomendado quando **vários data.frames precisam ser usados para produzir diferentes camadas** no gráfico. É usual para gráficos complexos.
+]
+]
+
+---
+name: cb
+## Pacote ggplot2 (tidyverse)
+&lt;br&gt;
+### Camada base
+
+.pull-left-4[
+.font80[
+
+
+```r
+ggplot(data = data_sample)
+```
+
+- A execução da função .green[ggplot()] (sem argumentos) ou com apenas o argumento .blue[data] especificado .green[ggplot(.blue[data] = .brown[data_sample])] gera simplesmente a base do gráfico (sem elementos estéticos e geométricos).
+&lt;br&gt;&lt;br&gt;
+
+
+```r
+data_sample %&gt;% ggplot()
+```
+
+- É comum usar o operador .blue[%&gt;%] para enviar o conjunto de dados para a função .green[ggplot()].
+
+]
+]
+
+.pull-right-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: xy
+## Pacote ggplot2 (tidyverse)
+
+.font80[
+### Camada base - .black[Especificando x e y]
+]
+&lt;br&gt;
+
+.pull-left-4[
+.font80[
+
+
+```r
+ggplot(data = data_sample,
+       mapping = aes(x = DAP, y = HC)) # 1ª camada
+```
+&lt;br&gt;
+
+- Adicionamos ".blue[x]" = DAP e ".blue[y]" = HC dentro da função .green[aes()] do argumento .blue[mapping].
+- Isso informar que as variáveis DAP e HC devem ser usadas nos eixos x e y, respectivamente, do gráfico.
+- Apesar disso, ainda não é possível visualizar um gráfico com elementos geométricos representativos dos dados.
+- Então, é necessário definir o **tipo de gráfico** que deseja-se construir.
+
+]
+]
+
+.pull-right-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: point
+## Pacote ggplot2 (tidyverse)
+&lt;br&gt;
+### Gráfico de pontos (dispersão)
+
+.pull-left-4[
+.font80[
+**Útil para exibir a relação entre duas variáveis contínuas...**
+
+```r
+ggplot(data = data_sample,
+       mapping = aes(x = DAP, y = V)) + # 1ª camada
+  geom_point()                          # 2ª camada
+```
+&lt;br&gt;
+
+👉 **2ª camada**:
+
+- A função .green[geom_point()] foi usada para adicionar uma camada de pontos no gráfico. Tem-se um gráfico de dispersão.
+- **Importante**: Para adicionar camadas usa-se o operador .red[**+**].
+
+]
+]
+
+.pull-right-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: alr
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Gráfico de pontos (dispersão) - .black[Adicione linha de regressão]
+]
+&lt;br&gt;
+
+.pull-left-4[
+.font80[
+
+
+```r
+ggplot(data = data_sample,
+       mapping = aes(x = DAP, y = V)) +       # 1ª camada
+  geom_point() +                              # 2ª camada
+  geom_smooth(method='lm', formula=y~x, se=F) # 3ª camada
+```
+&lt;br&gt;
+
+👉 **3ª camada**:
+
+- A função .green[geom_smooth()] foi usada para adicionar uma linha de regressão linear (y~x = V~DAP).
+]
+]
+
+.pull-right-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Gráfico de pontos (dispersão) - .black[Adicione linha de regressão]
+]
+&lt;br&gt;
+
+.pull-left-4[
+.font80[
+
+
+```r
+ggplot(data = data_sample,
+       mapping = aes(x = DAP, y = V)) +          # 1ª camada
+  geom_point() +                                 # 2ª camada
+  geom_smooth(method='lm', formula=y~x, se=F) +  # 3ª camada
+  geom_smooth(method='lm', formula=y~poly(x,2),
+              se=F, color = "red")               # 4ª camada
+```
+&lt;br&gt;
+
+👉 **4ª camada**:
+
+- A função .green[geom_smooth()] foi usada para adicionar outra linha de regressão, porém de um polinômio de segundo grau (y~x&lt;sup&gt;2&lt;/sup&gt; = V~DAP&lt;sup&gt;2&lt;/sup&gt;).
+]
+]
+
+.pull-right-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: mcp
+## Pacote ggplot2 (tidyverse)
+
+.font50[
+### Gráfico de pontos (dispersão) - .black[Modifique a cor dos pontos]
+]
+&lt;br&gt;
+
+.pull-left-4[
+.font70[
+- Identificando os pontos pertencentes a cada espécie...
+
+
+```r
+ggplot(data = data_sample,
+       mapping = aes(x = DAP, y = V)) +           # 1ª camada
+  geom_point(mapping = aes(colour=Nome_Especie))  # 2ª camada
+```
+&lt;br&gt;
+
+👉 **2ª camada**:
+- A função .green[geom_point()] também possui argumentos para customização de atributos estéticos. (?geom_point).
+- mapping: pode receber argumentos por meio da função .green[aes()]:
+
+x, y, alpha, .magenta[**colour**], fill, group, shape, size, stroke
+
+- O argumento .magenta[**colour**] recebeu a coluna "Nome_Especie" e mapeou diferentes cores para as categorias: Acapu, Andiroba, Goiabão, Maçaranduba.
+
+]
+]
+
+.pull-right-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: mfp
+## Pacote ggplot2 (tidyverse)
+
+.font50[
+### Gráfico de pontos (dispersão) - .black[Modifique a forma dos pontos]
+]
+&lt;br&gt;
+
+.pull-left-4[
+.font70[
+
+```r
+ggplot(data = data_sample,
+       mapping = aes(x = DAP, y = V)) +           # 1ª camada
+  geom_point(mapping = aes(colour=Nome_Especie,
+                           shape=Selecao))        # 2ª camada
+```
+&lt;br&gt;
+
+👉 **2ª camada**:
+
+- O argumento .magenta[**shape**] recebeu a coluna "Selecao" e mapeou diferentes formas para as categorias: Explorar e Remanescente.
+]
+]
+
+.pull-right-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: mtp
+## Pacote ggplot2 (tidyverse)
+
+.font50[
+### Gráfico de pontos (dispersão) - .black[Tamanho proporcional]
+]
+&lt;br&gt;
+
+.pull-left-4[
+.font70[
+- **Bubblechart** (gráfico de bolhas): É um gráfico de dispersão, em que uma terceira dimensão é adicionada.
+
+
+```r
+ggplot(data = data_sample %&gt;% filter(Nome_Especie == 'Maçaranduba'),
+       mapping = aes(x = DAP, y = V)) +           # 1ª camada
+  geom_point(mapping = aes(colour = Selecao,
+                           size = HC))            # 2ª camada
+```
+&lt;br&gt;
+
+👉 **2ª camada**:
+
+- O argumento .magenta[**size**] (dentro de .green[aes()]) recebeu a coluna "HC" e mapeou tamanhos de pontos proporcionais aos valores de HC.
+- Portanto, a altura de cada árvore é representada pelo tamanho do círculo.
+]
+]
+
+.pull-right-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Gráfico de pontos (dispersão) - .black[Modifique tamanho dos pontos]
+]
+&lt;br&gt;
+
+.pull-left-4[
+.font70[
+- Aumentando tamanho de todos os pontos, mas na mesma proporção...
+
+
+```r
+ggplot(data = data_sample %&gt;%
+           filter(Nome_Especie %in% c('Acapu', 'Maçaranduba')),
+       mapping = aes(x = DAP, y = V)) +           # 1ª camada
+  geom_point(mapping = aes(colour = Nome_Especie,
+                           shape = Selecao),
+             size = 4)                            # 2ª camada
+```
+&lt;br&gt;
+
+👉 **2ª camada**:
+
+- Isso é feito com argumento .magenta[**size**], porém fora de .green[aes()].
+- Especifique um valor inteiro para o argumento.
+]
+]
+
+.pull-right-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: pfcp
+## Pacote ggplot2 (tidyverse)
+
+.font60[
+### Gráfico de pontos (dispersão) - .black[Personalize a forma e a cor dos pontos]
+]
+&lt;br&gt;
+
+.pull-left-4[
+.font70[
+
+```r
+ggplot(data = data_sample %&gt;%
+           filter(Nome_Especie %in% c('Andiroba', 'Maçaranduba')),
+       mapping = aes(x = DAP, y = V)) +               # 1ª camada
+  geom_point(mapping = aes(colour = Nome_Especie,
+                           shape = Selecao),
+             size = 4) +                              # 2ª camada
+  scale_shape_manual(values = c(3, 5)) +              # 3ª camada
+  scale_color_manual(values = c('#F1C40F','#DE3163')) # 4ª camada
+```
+&lt;br&gt;
+
+👉 **3ª e 4ª camadas**:
+
+- Use .green[scale_shape_manual()] e .green[scale_color_manual()] para definir a forma e cor desejada para os pontos (e muito mais), respectivamente.
+]
+]
+
+.pull-right-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Gráfico de pontos (dispersão) - .black[Tipos de formas (shapes)]
+]
+&lt;br&gt;
+
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-18-1.png" width="35%" style="display: block; margin: auto;" /&gt;
+
+
+---
+name: ml
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Gráfico de pontos (dispersão) - .black[Modifique legendas]
+]
+&lt;br&gt;
+
+.pull-left-4[
+.font70[
+
+```r
+ggplot(data = data_sample %&gt;%
+           filter(Nome_Especie %in% c('Andiroba', 'Maçaranduba')),
+       mapping = aes(x = DAP, y = V)) +                 # 1ª camada
+  geom_point(mapping = aes(colour = Nome_Especie,
+                           shape = Selecao),
+             size = 4) +                                # 2ª camada
+  scale_shape_manual(values = c(3, 5),
+                     labels = c("Árvore para explorar",
+                                "Árvore remanescente"),
+                     name = "Seleção") +                # 3ª camada
+  scale_color_manual(values = c('#999999','#E69F00'),
+                     labels = c("Carapa guianensis",
+                                "Manilkara elata"),
+                     name = "Espécie")                  # 4ª camada
+```
+&lt;br&gt;
+
+👉 **3ª e 4ª camadas**:
+
+- Use .green[scale_shape_manual()] e .green[scale_color_manual()] para modificar as legendas atribuídas a partir das variáveis mapeadas em .blue[shape] e .blue[color] de .green[geom_point()], respectivamente.
+- Explore os argumentos .blue[labels] e .blue[name].
+]
+]
+
+.pull-right-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-19-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Gráfico de pontos (dispersão) - .black[Modifique títulos e escalas]
+]
+&lt;br&gt;
+
+.pull-left-4[
+.font70[
+
+```r
+ggplot(data = data_sample %&gt;%
+           filter(Nome_Especie %in% c('Andiroba', 'Maçaranduba')),
+       mapping = aes(x = DAP, y = V)) +                 # 1ª camada
+  geom_point(mapping = aes(colour = Nome_Especie,
+                           shape = Selecao),
+             size = 4) +                                # 2ª camada
+  scale_shape_manual(values = c(3, 5),
+                     labels = c("Árvore para explorar",
+                                "Árvore remanescente"),
+                     name = "Seleção") +                # 3ª camada
+  scale_color_manual(values = c('#999999','#E69F00'),
+                     labels = c("Carapa guianensis",
+                                "Manilkara elata"),
+                     name = "Espécie") +                # 4ª camada
+  scale_x_continuous(name = "Diâmetro (cm)",
+                     limits = c(35, 115),
+                     breaks = seq(35, 115, 10))         # 5ª camada
+```
+
+👉 **5ª camada**:
+
+- Argumentos .blue[name], .blue[limits] e .blue[breaks] na camada de .green[scale_x_continuous()]. Experimente: .green[scale_y_continuous()].
+]
+]
+
+.pull-right-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-20-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Gráfico de pontos (dispersão) - .black[Adicione títulos, subtítulos, tags...]
+]
+&lt;br&gt;
+
+.pull-left-4[
+.font70[
+
+
+```r
+ggplot(data = data_sample %&gt;%
+           filter(Nome_Especie %in% c('Andiroba', 'Maçaranduba')),
+       mapping = aes(x = DAP, y = V)) +                 # 1ª camada
+  geom_point(mapping = aes(colour = Nome_Especie,
+                           shape = Selecao),
+             size = 4) +                                # 2ª camada
+  scale_shape_manual(values = c(3, 5),
+                     labels = c("Árvore para explorar",
+                                "Árvore remanescente"),
+                     name = "Seleção") +                # 3ª camada
+  scale_color_manual(values = c('#999999','#E69F00'),
+                     labels = c("Carapa guianensis",
+                                "Manilkara elata"),
+                     name = "Espécie") +                # 4ª camada
+  labs(title = "Relação Volume-Diâmetro",
+       subtitle = "(IF100% - Amazônia)",
+       tag = "A", x = "Diâmetro (cm)",
+       y = "Volume (m³)")                               # 5ª camada
+```
+
+👉 **5ª camada**:
+
+- Experimente a função .green[labs()] para adicionar títulos.
+]
+]
+
+.pull-right-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-21-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Gráfico de pontos (dispersão) - .black[Uma equação e suas estatísticas]
+]
+&lt;br&gt;
+
+.pull-left-4[
+.font70[
+
+
+```r
+data_sample %&gt;%
+  filter(Nome_Especie %in% 'Maçaranduba') %&gt;%
+  ggplot(mapping = aes(x = DAP, y = V)) +       # 1ª camada
+  geom_point() +                                # 2ª camada
+  geom_smooth(method='lm', formula=y~x, se=F) + # 3ª camada
+  ggpmisc::stat_poly_eq(formula = y~x,
+                        eq.with.lhs = "italic(hat(V))~`=`~",
+                        aes(label =
+                              paste(..eq.label..,
+                                    ..adj.rr.label..,
+                                    ..AIC.label..,
+                                    sep = "*plain(\",\")~")),
+                        parse = TRUE)            # 4ª camada
+```
+
+👉 **4ª camada**:
+
+- Use a função .green[stat_poly_eq()] do pacote **ggpmisc** para adicionar informações de ajuste de um modelo linear.
+]
+]
+
+.pull-right-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-22-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Gráfico de pontos (dispersão) - .black[Uma equação e suas estatísticas]
+]
+&lt;br&gt;
+
+.pull-left-4[
+.font70[
+
+
+```r
+data_sample %&gt;%
+  filter(Nome_Especie %in% 'Maçaranduba') %&gt;%
+  ggplot(mapping = aes(x = DAP, y = V)) +       # 1ª camada
+  geom_point() +                                # 2ª camada
+  geom_smooth(method='lm',
+              formula=y~poly(x,2), se=F) + # 3ª camada
+  ggpmisc::stat_poly_eq(formula = y~poly(x,2),
+                        eq.with.lhs = "italic(hat(V))~`=`~",
+                        aes(label =
+                              paste(..eq.label..,
+                                    ..adj.rr.label..,
+                                    ..AIC.label..,
+                                    sep = "*plain(\",\")~")),
+                        parse = TRUE)            # 4ª camada
+```
+
+👉 **4ª camada**:
+
+- Use a função .green[stat_poly_eq()] do pacote **ggpmisc** para adicionar informações de ajuste de um modelo linear.
+- Use .green[poly()] no argumento .brown[formula] para modificar o grau do polinômio.
+]
+]
+
+.pull-right-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-23-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Gráfico de pontos (dispersão) - .black[Duas equações e suas estatísticas]
+]
+&lt;br&gt;
+
+.pull-left-4[
+.font70[
+
+
+```r
+data_sample %&gt;%
+  filter(Nome_Especie %in% c('Andiroba', 'Maçaranduba')) %&gt;%
+  ggplot(mapping =
+           aes(x = DAP, y = V,
+               linetype = Nome_Especie,
+               colour = Nome_Especie)) +           # 1ª camada
+  geom_point() +                                   # 2ª camada
+  geom_smooth(method='lm',
+              formula=y~poly(x,2), se=F) +         # 3ª camada
+  ggpmisc::stat_poly_eq(formula = y~poly(x,2),
+                        eq.with.lhs = "italic(hat(V))~`=`~",
+                        aes(label =
+                              paste(..eq.label..,
+                                    ..adj.rr.label..,
+                                    sep = "*plain(\",\")~")),
+                        parse = TRUE) +             # 4ª camada
+  scale_color_manual(values = c("red", "black"))    # 5ª camada
+```
+
+👉 **4ª camada**:
+
+- Especifique .brown[linetype] = .blue[Nome_Especie] para que linhas de ajustes para cada categoria de "Nome_Especie" sejam
+mapeadas.
+]
+]
+
+.pull-right-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: gb
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Gráfico de barras (ou colunas)
+- Existem 2 tipos de gráficos de barra: .green[geom_bar()] e .green[geom_col()].
+]
+
+.font70[
+&lt;br&gt;
+
+**Vamos experimentar 2 abordagens usando .green[geom_bar()] para construir gráficos de barras com contagens por categorias...**
+&lt;br&gt;
+
+- **Abordagem 1**: A partir de um quadro com todos os dados.
+- **Abordagem 2**: A partir de um quadro com os dados resumidos.
+]
+&lt;br&gt;
+
+.pull-left-4[
+.font70[
+**.blue[Tabela com todos os dados das 3 espécies mais frequentes...]**
+
+```r
+# Filtra os dados de 3 espécies mais frequentes
+data_sample2 &lt;- data %&gt;%
+  filter(Nome_Especie %in% c("Acapu", "Casca seca", "Timborana"))
+```
+]
+]
+
+.pull-right-4[
+.font70[
+**.blue[Tabela de contagem das 3 espécies mais frequentes...]**
+
+```r
+# Uma tabela de contagem das 3 espécies mais frequentes
+data_top &lt;- data %&gt;%
+  filter(Nome_Especie %in% c("Acapu", "Casca seca", "Timborana")) %&gt;%
+  group_by(Nome_Especie) %&gt;%
+  summarise(media_HC = mean(HC), n = n())
+
+# Adicione **arrange(desc(n))** se desejar
+# imprimir a tabela ordenada por "n".
+```
+]
+]
+
+---
+name: gcc
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Gráfico de barras (ou colunas) - .black[Contagem por categoria]
+
+- **Abordagem 1**: A partir de um quadro com todos os dados.
+]
+
+.font70[
+.pull-right-4[
+
+```r
+ggplot(data = data_sample2) +                # 1ª camada
+  geom_bar(aes(x = Nome_Especie),
+           stat = "count")                   # 2ª camada
+```
+&lt;br&gt;&lt;br&gt;
+
+**Gráfico de contagem por categoria usando .green[geom_bar()]**
+&lt;br&gt;
+
+1. Use .blue[stat] = "count" na camada .green[geom_bar()] para fazer a contagem de casos por categoria em "x".
+2. Neste caso, o argumento "y" é dispensado.
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-27-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Gráfico de barras (ou colunas) - .black[Contagem por categoria]
+
+- **Abordagem 2**: A partir de um quadro com os dados resumidos.
+]
+
+
+.pull-right-4[
+.font70[
+
+```r
+ggplot(data = data_top) +                   # 1ª camada
+  geom_bar(aes(x = Nome_Especie, y = n),
+           stat = "identity")               # 2ª camada
+```
+&lt;br&gt;&lt;br&gt;
+
+**Gráfico de contagem por categoria usando .green[geom_bar()]**
+&lt;br&gt;
+
+1. Use .blue[stat] = "identity" na camada .green[geom_bar()], indicando que os dados devem ser usados como estão.
+2. Neste caso, o argumento "y" com os valores de contagem precisa ser informado.
+
+.center[
+**Atenção!**
+&lt;br&gt;
+.blue[Veja que dessa vez não mapeamos x e y na função ggplot().
+&lt;br&gt;
+Você entenderá o motivo adiante!].
+]
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-28-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: gmc
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Gráfico de barras (ou colunas) - .black[Média por categoria]
+
+- **Abordagem 1**: A partir de um quadro com todos os dados.
+]
+
+.font70[
+.pull-right-4[
+
+```r
+ggplot(data = data_sample2) +               # 1ª camada
+  geom_bar(aes(x = Nome_Especie, y = HC),
+           stat = "summary",
+           fun = "mean")                    # 2ª camada
+```
+&lt;br&gt;&lt;br&gt;
+
+**Gráfico de médias por categoria usando .green[geom_bar()]**
+&lt;br&gt;
+
+1. Use .blue[stat] = "summary" e .blue[fun] = "mean" na camada .green[geom_bar()].
+2. Ao usar .blue[stat] = "summary", é possível especificar a estatística de resumo no argumento .blue[fun].
+3. **Experimente**: Use .blue[fun] = "sum" e .blue[y] = V, para obter o volume total das 3 espécies.
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-29-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Gráfico de barras (ou colunas) - .black[Média por categoria]
+
+- **Abordagem 2**: A partir de um quadro com os dados resumidos.
+]
+
+.font70[
+.pull-right-4[
+
+```r
+ggplot(data = data_top) +                         # 1ª camada
+  geom_bar(aes(x = Nome_Especie, y = media_HC),
+           stat = "identity")                     # 2ª camada
+```
+&lt;br&gt;&lt;br&gt;
+
+**Gráfico de médias por categoria usando .green[geom_bar()]**
+&lt;br&gt;
+
+1. Use .blue[stat] = "identity" na camada .green[geom_bar()], indicando que os dados devem ser usados como estão. Fazendo isso, .green[stat_identity()] será invocada.
+2. Neste caso, o argumento "y" (Média) precisa ser informado.
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-30-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: mcb
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Gráfico de barras (ou colunas) - .black[Modificando cores das barras]
+]
+&lt;br&gt;
+
+.pull-right-4[
+.pull-top[
+.font70[
+
+```r
+ggplot(data = data_top) +                           # 1ª camada
+  geom_bar(mapping = aes(x = Nome_Especie,
+                         y = n,
+                         fill = Nome_Especie),
+           stat = "identity", show.legend = F)      # 2ª camada
+```
+&lt;br&gt;
+
+👉 **2ª camada**:
+
+- Em .green[geom_bar()] pode-se adicionar elementos estéticos.
+- Por exemplo, o argumento .brown[fill] recebeu a coluna "Nome_Especie" e mapeou diferentes cores para as categorias.
+&lt;br&gt;&lt;br&gt;
+]
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-31-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: rb
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Gráfico de barras - .black[Reordenando as barras]
+]
+&lt;br&gt;
+
+.pull-right-4[
+.pull-top[
+.font70[
+
+```r
+data_top %&gt;%
+  mutate(Nome_Especie =
+           forcats::fct_reorder(Nome_Especie, n, .desc = F)
+         ) %&gt;%
+  ggplot() +                                        # 1ª camada
+  geom_bar(mapping = aes(x = Nome_Especie,
+                         y = n,
+                         fill = Nome_Especie),
+           stat = "identity", show.legend = F)      # 2ª camada
+```
+&lt;br&gt;
+
+- Use a função .green[fct_reorder()] do pacote **forcats** para reordenar os níveis de fator da variável "Nome_Especie".
+- Repasse o comando dentro da função .green[mutate()] do **dplyr**.
+&lt;br&gt;&lt;br&gt;
+
+**Experimente**: Faça .green[as.factor(.black[data_top$Nome_Especie])] e veja como os níveis de fator são ordenados por padrão.
+]
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-32-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: arb
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Gráfico de barras - .black[Adicionando rótulos nas barras]
+]
+&lt;br&gt;
+
+.pull-right-4[
+.pull-top[
+.font70[
+
+```r
+data_top %&gt;%
+  mutate(Nome_Especie =
+           forcats::fct_reorder(Nome_Especie, n, .desc = F)
+         ) %&gt;%
+  ggplot() +                                             # 1ª camada
+  geom_bar(mapping = aes(x = Nome_Especie,
+                         y = n,
+                         fill = Nome_Especie),
+           stat = "identity", show.legend = F) +         # 2ª camada
+  geom_label(aes(x = Nome_Especie,
+                 y = n/2,
+                 label = n),
+             size = 3)                                   # 3ª camada
+```
+&lt;br&gt;
+
+👉 **3ª camada**:
+
+- Use a função .green[geom_label()] para reordenar adicionar rótulos com os valores de contagem por espécie a cada barra..
+- **Importante**: perceba que para .green[geom_label()] mapeou-se novos pares de valores (x e y), que indicam a posição de impressão dos rótulos no gráfico.
+- Este é o motivo para não especificar x e y em ggplot()!
+
+]
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-33-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: rdv
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Gráfico de barras - .black[Representando duas (ou mais) variáveis]
+]
+&lt;br&gt;
+
+.pull-right-4[
+.pull-top[
+.font70[
+
+```r
+data_sample %&gt;%
+  filter(Nome_Especie != "Acapu") %&gt;%
+  ggplot() +                                          # 1ª camada
+  geom_bar(aes(x = Nome_Especie, fill = Selecao),
+           position = "dodge",
+           stat = "count")                            # 2ª camada
+```
+&lt;br&gt;
+
+👉 **2ª camada**:
+
+- O gráfico mostra a contagem de árvores remanescente e explorar por espécie.
+- Use .blue[fill] para mapear diferentes cores para as categorias de "Selecao".
+- Use .blue[position] = "dodge" para que as barras sejam posicionadas lado a lado. (Padrão é "stack" = empilhadas)
+]
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-34-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Gráfico de barras - .black[Represente duas (ou mais) variáveis quantitativas]
+]
+&lt;br&gt;
+
+.pull-right-4[
+.pull-top[
+.font70[
+
+```r
+data_sample %&gt;%
+  select(c(Nome_Especie, HC, DAP)) %&gt;%
+  tidyr::pivot_longer(cols = !Nome_Especie,
+                      names_to = "Variavel",
+                      values_to = "Valor") %&gt;%    # pivot = "mudar" ou "girar"
+  ggplot() +                                      # 1ª camada
+  geom_bar(mapping = aes(x = Nome_Especie,
+                         y = Valor,
+                         fill = Variavel),
+           position = "dodge",
+           stat = "summary",
+           fun = "mean")                          # 2ª camada
+```
+
+- Inicialmente, transforme o quadro de dados para o formato longo. Use a função .green[pivot_longer()] do pacote **tidyr**.
+- Use .blue[cols] para informar as colunas que devem sofrer pivotagem.
+- Use .blue[names_to] para informar o **nome da coluna** a ser criada a partir dos **nomes das colunas pivotadas**.
+- Use .blue[values_to] para informar o **nome da coluna** a ser criada a a partir dos **dados das células**.
+]
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-35-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: hist
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Histogramas de frequências - .black[Distribuição diamétrica]
+]
+
+.pull-right-4[
+.pull-top[
+.font70[
+
+```r
+data %&gt;%
+  ggplot() +                                 # 1ª camada
+  geom_histogram(mapping = aes(x = DAP))     # 2ª camada
+```
+&lt;br&gt;
+
+👉 **2ª camada**:
+
+- Gráfico mostra a distribuição de frequência de uma única variável contínua (DAP).
+- Use .green[geom_histogram()] para criar histogramas.
+- É necessário apenas especificar para "x" ou "y" a variável contínua.
+]
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-36-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+
+---
+name: clb
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Histogramas de frequências - .black[Controlando a largura das barras]
+]
+
+.pull-right-4[
+.pull-top[
+.font70[
+
+```r
+data %&gt;%
+  ggplot() +                                 # 1ª camada
+  geom_histogram(mapping = aes(x = DAP),
+                 binwidth = 10)              # 2ª camada
+```
+&lt;br&gt;
+
+👉 **2ª camada**:
+
+- Use .blue[binwidth] para controlar a largura das barras.
+- Explore .blue[binwidth] para encontrar a melhor representação dos dados.
+]
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-37-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: pol
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Polígono de frequências - .black[Compare distribuições entre categorias]
+]
+
+.pull-right-4[
+.pull-top[
+.font70[
+
+```r
+data_sample2 %&gt;%
+  ggplot() +                                 # 1ª camada
+  geom_freqpoly(mapping = aes(x = DAP,
+                              colour = Nome_Especie),
+                 binwidth = 10)              # 2ª camada
+```
+&lt;br&gt;
+
+👉 **2ª camada**:
+
+- Use .green[geom_freqpoly()] para criar polígonos de frequências.
+- Esse tipo de gráfico é recomendado quando deseja-se comparar a distribuição entre os níveis de uma variável categórica.
+]
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-38-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: box
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### BoxPlots - .black[Compare distribuições]
+]
+
+.pull-right-4[
+.pull-top[
+.font70[
+
+```r
+data_sample2 %&gt;%
+  ggplot() +                                 # 1ª camada
+  geom_boxplot(aes(x = Nome_Especie,
+                   y = DAP))                 # 2ª camada
+```
+&lt;br&gt;
+
+👉 **2ª camada**:
+
+- São adequados para comparar distribuições.
+- Use .green[geom_boxplot()] para criar BoxPlots.
+- Mapeie os valores de "x" e "y" na camada.
+- No exemplo, os BoxPlots dos DAPs de cada categoria de "Nome_Especie" são mapeados.
+- É possível visualizar um BoxPlot geral (sem considerar categorias) apenas modificando para "x" = 1.
+]
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-39-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: rbox
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### BoxPlots - .black[Reordenando os BoxPlots]
+]
+
+.pull-right-4[
+.pull-top[
+.font70[
+
+```r
+data_sample2 %&gt;%
+    mutate(Nome_Especie =
+           forcats::fct_reorder(
+             Nome_Especie,
+             DAP,
+             .desc = T)
+           ) %&gt;%
+  ggplot() +                                 # 1ª camada
+  geom_boxplot(aes(x = Nome_Especie,
+                   y = DAP))                 # 2ª camada
+```
+&lt;br&gt;
+
+👉 **2ª camada**:
+
+- Use .green[fct_reorder()] do pacote **forcats** para reordenar os níveis de fator da variável "Nome_Especie".
+- Repasse o comando dentro da função .green[mutate()] do **dplyr**.
+]
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-40-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+
+---
+name: meanbox
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### BoxPlots - .black[Adicione símbolo para representar a média]
+]
+
+.pull-right-4[
+.pull-top[
+.font70[
+
+```r
+data_sample2 %&gt;%
+  ggplot(aes(x = Nome_Especie,
+                   y = DAP)) +      # 1ª camada
+  geom_boxplot() +                  # 2ª camada
+  stat_summary(fun = mean,
+               geom = "point",
+               shape = 20,
+               size = 4,
+               color = "red"
+               )                    # 3ª camada
+```
+&lt;br&gt;
+
+👉 **2ª camada**:
+
+- Use .green[stat_summary()] para adicionar pontos representativos da média para cada categoria de "Nome_Especie".
+- Use .blue[fun] para informar a estatística desejada.
+]
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-41-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: rvg
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### BoxPlots - .black[Represente vários grupos]
+]
+
+.pull-right-4[
+.pull-top[
+.font70[
+
+```r
+data_sample %&gt;%
+  ggplot(aes(x = Nome_Especie,
+             y = DAP,
+             color = Selecao)) +      # 1ª camada
+  geom_boxplot()                      # 2ª camada
+```
+&lt;br&gt;
+
+👉 **1ª camada**:
+
+- Use .blue[color] = .brown[Selecao] para criar BoxPlots de cada categoria de "Selecao" para cada espécie.
+- Os BoxPlots das categorias serão diferenciados por cores.
+]
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-42-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: aprd
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### BoxPlots - .black[Adicione pontos representativos dos dados]
+]
+
+.pull-right-4[
+.pull-top[
+.font70[
+
+```r
+data_sample %&gt;%
+  ggplot(aes(x = Nome_Especie,
+             y = DAP)) +                        # 1ª camada
+  geom_boxplot() +                              # 2ª camada
+  geom_jitter(width = 0.1)                      # 3ª camada
+```
+&lt;br&gt;
+
+👉 **3ª camada**:
+
+- Use .green[geom_jitter()] para adicionar pontos representativos dos dados.
+- A .green[geom_jitter()] adiciona uma pequena variação aleatória à localização de cada ponto, evitando *overplotting* (dados sobrepostos).
+]
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-43-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+
+---
+name: acpc
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### BoxPlots - .black[Adicione cores aos pontos por categoria]
+]
+
+.pull-right-4[
+.pull-top[
+.font70[
+
+```r
+data_sample %&gt;%
+  ggplot(aes(x = Nome_Especie,
+             y = DAP,
+             color = Selecao)) +                # 1ª camada
+  geom_boxplot(color="black",
+               outlier.shape = NA) +            # 2ª camada
+  geom_jitter(width = 0.1)                      # 3ª camada
+```
+&lt;br&gt;
+
+👉 **3ª camada**:
+
+- Use .blue[color] = .brown[Selecao] em .green[ggplot()] para mapear cores para os pontos representativos das categorias de "Selecao".
+- Use .blue[color] = .brown["black"] em .green[geom_boxplot].
+- Use .blue[outlier.shape] = .brown[NA] em .green[geom_boxplot] para ignorar os outliers.
+]
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-44-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+
+---
+name: facet
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Facetas - .black[Matriz de painéis (facet)]
+]
+
+--
+
+.pull-right-4[
+.pull-top[
+.font70[
+
+```r
+data_sample %&gt;%
+  ggplot() +                    # 1ª camada
+  geom_point(
+    mapping = aes(
+      x = DAP,
+      y = V,
+      color = Nome_Especie))    # 2ª camada
+```
+&lt;br&gt;
+**Primeiro, vamos resgatar um gráfico de pontos que fizemos anteriormente...**
+&lt;br&gt;
+
+- Neste gráfico, a estética de cor (color) foi usada para diferenciar as categorias da variável "Nome_Especie".
+- Mas, veja que existe uma razoável sobreposição de grupos. Isso dificulta uma clara e fácil separação destes.
+- **Alternativa**: Use .green[facet_grid()] ou .green[facet_wrap()] para diferenciar grupos.
+]
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-45-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+
+---
+name: rcv
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Facetas - .black[Represente categorias de uma varíavel]
+]
+
+--
+
+.pull-right-4[
+.pull-top[
+.font70[
+
+```r
+data_sample %&gt;%
+  ggplot(aes(x = DAP, y = V)) +       # 1ª camada
+  geom_point() +                      # 2ª camada
+  facet_grid(. ~ Nome_Especie)        # 3ª camada
+```
+&lt;br&gt;
+
+- Use .green[facet_grid()] para diferenciar grupos de uma (ou mais) variáveis.
+- Forneça uma fórmula para .green[facet_grid()], como: **vertical ~ horizontal**
+&lt;br&gt;&lt;br&gt;
+
+<span>&lt;i class="fas  fa-hand-point-down faa-vertical animated "&gt;&lt;/i&gt;</span> **Experimente**
+- **Modifique**: .green[facet_grid(] .brown[Nome_Especie ~ .].green[)]
+- **Adicione**: .green[geom_smooth()]
+]
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-46-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: rcdv
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Facetas - .black[Represente categorias de duas (ou mais) variáveis]
+]
+
+--
+
+.pull-right-4[
+.pull-top[
+.font70[
+
+```r
+data_sample %&gt;%
+  ggplot(aes(x = DAP, y = V)) +       # 1ª camada
+  geom_point() +                      # 2ª camada
+  facet_grid(Selecao ~ Nome_Especie)  # 3ª camada
+```
+&lt;br&gt;
+
+- Adicione em .green[facet_grid()] mais uma variável para mapear.
+- Um matriz de subgráficos é criada com dados dos níveis/categorias das variáveis “Selecao” e “Nome_Especie”
+&lt;br&gt;&lt;br&gt;
+
+<span>&lt;i class="fas  fa-hand-point-down faa-vertical animated "&gt;&lt;/i&gt;</span> **Experimente**
+- **Modifique**: .green[facet_grid(] .brown[Nome_Especie ~ Selecao].green[)]
+- **Adicione**: .green[geom_smooth()]
+]
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-47-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: eel
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Facetas - .black[Escalas dos eixos livres]
+]
+
+--
+
+.pull-right-4[
+.pull-top[
+.font70[
+
+```r
+data_sample %&gt;%
+  ggplot(aes(x = DAP, y = V)) +       # 1ª camada
+  geom_point() +                      # 2ª camada
+  facet_grid(Selecao ~ Nome_Especie,
+             scales="free")           # 3ª camada
+```
+&lt;br&gt;
+
+- Por padrão, .green[facet_grid()] usa .blue[scales]=.brown["fixed"]. Isso significa que as escalas dos eixos (x e y) são constantes em todos os subgráficos.
+- Use .blue[scales]=.brown["free"] para permitir que as escalas sejam independentes, ou seja, possam variar para cada subgráfico.
+&lt;br&gt;&lt;br&gt;
+
+<span>&lt;i class="fas  fa-hand-point-down faa-vertical animated "&gt;&lt;/i&gt;</span> **Experimente**
+- **Modifique**: .blue[scales]=.brown["free_x"] e .blue[scales]=.brown["free_y"]. O que acontece?
+]
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-48-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: mtrf
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Facetas - .black[Modificando o texto do rótulo da faceta]
+]
+
+--
+
+.pull-right-4[
+.pull-top[
+.font70[
+
+```r
+
+labels1 &lt;- c(Remanescente = "Rem.", Explorar = "Exp.")
+labels2 &lt;- c(Acapu = "Vouacapoua", Andiroba = "Carapa",
+             `Goiabão` = "Pouteria", `Maçaranduba` = "Manilkara")
+
+data_sample %&gt;%
+  ggplot(aes(x = DAP, y = V)) +                 # 1ª camada
+  geom_point() +                                # 2ª camada
+  facet_grid(Selecao ~ Nome_Especie,
+             scales = "free",
+             `labeller` =
+               labeller(Selecao = labels1,
+                        Nome_Especie = labels2)) # 3ª camada
+```
+&lt;br&gt;
+
+- Use .blue[labeller] para modificar os rótulos das facetas.
+
+]
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-49-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: save
+## Pacote ggplot2 (tidyverse)
+
+.font70[
+### Salve um ggplot em diferentes extensões e alta resolução
+]
+&lt;br&gt;
+
+.pull-left-4[
+.font90[
+- Um gráfico produzido com **ggplot2** pode ser salvo em diferentes extensões usando a função .green[ggsave()].
+- Por padrão, o último gráfico produzido e exibido é salvo (last_plot).
+- O gráfico é salvo no diretório corrente, se não houver especificação do diretório.
+]
+]
+
+--
+
+.pull-right-4[
+.font80[
+**Salva último gráfico exibido no diretório corrente**
+
+```r
+ggsave(filename = "facet.png")
+ggsave(filename = "facet.pdf")
+```
+
+**Salva último gráfico exibido em outro diretório**
+
+```r
+ggsave("facet.png", path = "fig/part3")
+```
+
+**Salva especificando resolução (dpi)**
+
+```r
+ggsave("facet.png", path = "fig/part3", dpi = 600)
+```
+
+**Salva especificando resolução, largura e altura**
+
+```r
+ggsave("facet.png", path = "fig/part3",
+       dpi = 600, width = 8, height = 8,
+       units = "cm")
+```
+]
+]
+
+---
+
+layout: false
+name: conc
+class: inverse, top, right
+background-image: url(fig/slide-title/arara.jpg)
+background-size: cover
+
+.font200[**.yellow[Parte 2] &lt;br&gt; .white[Combinação de gráficos &lt;br&gt; com .orange[Patchwork]]**]
+
+.left[.footnote[.white[Créditos: Imagem de IvaCastro por Pixabay].]]
+
+---
+
+layout: true
+class: with-logo logo-ufpa
+&lt;div class="my-header"&gt;&lt;/div&gt;
+&lt;div class="my-footer"&gt;&lt;span&gt;Prof. Dr. Deivison Venicio Souza (E-mail: deivisonvs@ufpa.br)&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp; &lt;div2&gt;Minicurso: Visualização de dados com ggplot2 e extensões&lt;/div2&gt; &lt;/div&gt;
+
+---
+name: patchwork
+## Pacote Patchwork - Combine gráficos
+
+.font70[
+### Combine gráficos em uma trama complexa...
+]
+&lt;br&gt;
+
+.pull-left-4[
+.font80[
+- O pacote .blue[ggplot2] não possui funções para combinar gráficos.
+- O pacote .blue[patchwork] permite uma composição (simples e complexa) de gráficos.
+- O pacote é muito intuitivo, pois usa do auxílio de operadores
+matemáticos para combinar gráficos, além de possuir funções específicas.
+- Existem outros pacotes empenhados nesta tarefa, por exemplo, .blue[gridExtra] e .blue[cowplot].
+]
+]
+
+.pull-right-4[
+&lt;img src="https://patchwork.data-imaginist.com/reference/figures/logo.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Pacote Patchwork - Combine gráficos
+
+.font70[
+### Primeiro, vamos resgatar 4 gráficos elaborados anteriormente...
+]
+
+.pull-right-4[
+.font80[
+
+```r
+(g1 &lt;- data_sample %&gt;%
+  filter(Nome_Especie %in% 'Maçaranduba') %&gt;%
+  ggplot(mapping = aes(x = DAP, y = V)) +       # 1ª camada
+  geom_point() +                                # 2ª camada
+  geom_smooth(method='lm', formula=y~x, se=F) + # 3ª camada
+  ggtitle('g1'))
+```
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-55-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+
+## Pacote Patchwork - Combine gráficos
+
+.font70[
+### Primeiro, vamos resgatar 4 gráficos elaborados anteriormente...
+]
+
+.pull-right-4[
+.font80[
+
+```r
+(g2 &lt;- data_top %&gt;%
+  mutate(Nome_Especie =
+           forcats::fct_reorder(
+             Nome_Especie, n, .desc = F)) %&gt;%
+  ggplot() +                                      # 1ª camada
+  geom_bar(mapping = aes(
+    x = Nome_Especie, y = n, fill = Nome_Especie),
+    stat = "identity", show.legend = F) +         # 2ª camada
+  geom_label(aes(x = Nome_Especie,
+                 y = n/2,
+                 label = n),
+             size = 3) +
+   ggtitle('g2'))
+```
+]
+]
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-56-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+
+## Pacote Patchwork - Combine gráficos
+
+.font70[
+### Primeiro, vamos resgatar 4 gráficos elaborados anteriormente...
+]
+
+.pull-right-4[
+.font80[
+
+```r
+(g3 &lt;- data_sample2 %&gt;%
+  ggplot() +                                 # 1ª camada
+  geom_freqpoly(mapping = aes(x = DAP,
+                              colour = Nome_Especie),
+                binwidth = 10) +             # 2ª camada
+   theme(legend.position = c(.7,.5),
+        legend.direction="vertical",
+        legend.key.size = unit(0.2, "cm"),
+        legend.key = element_rect(colour = NA, fill = NA),
+        legend.title = element_blank())+
+   ggtitle('g3'))
+```
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-57-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+
+## Pacote Patchwork - Combine gráficos
+
+.font70[
+### Primeiro, vamos resgatar 4 gráficos elaborados anteriormente...
+]
+
+.pull-right-4[
+.font80[
+
+```r
+(g4 &lt;- data_sample %&gt;%
+   filter(Nome_Especie != "Acapu") %&gt;%
+  ggplot(aes(x = Nome_Especie,
+             y = DAP,
+             color = Selecao)) +                # 1ª camada
+  geom_boxplot(color="black",
+               outlier.shape = NA) +            # 2ª camada
+  geom_jitter(width = 0.1) +                    # 3ª camada
+  theme(legend.position = c(.3,.8),
+        legend.direction = "vertical",
+        legend.key.size = unit(0.2, "cm"),
+        legend.key = element_rect(colour = NA, fill = NA),
+        legend.title = element_blank())+
+   ggtitle('g4'))
+```
+]
+]
+
+--
+
+.pull-left-4[
+.font80[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-58-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: adicao
+## Pacote Patchwork - Combine gráficos
+
+.font70[
+### Uso de operadores matemáticos - .black[Operador adição (+)]
+]
+
+.pull-left-4[
+.font70[
+- A abordagem mais simples é usar o operador + (adição) para combinar gráficos.
+&lt;br&gt;
+
+```r
+library(patchwork)
+g1 + g2
+```
+
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-59-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+--
+
+.pull-right-4[
+.font70[
+- No Patchwork, por padrão, busca-se criar uma matriz quadrada,
+cujos subgráficos são dispostos na ordem das linhas.
+&lt;br&gt;
+
+
+```r
+g1 + g2 + g3 + g4
+```
+
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-60-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+name: divisao
+## Pacote Patchwork - Combine gráficos
+
+.font70[
+### Uso de operadores matemáticos - .black[Divisão (/) - Empilhar]
+]
+
+.pull-right-1[
+
+```r
+g2/g4
+```
+]
+
+--
+
+.pull-left-2[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-61-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Pacote Patchwork - Combine gráficos
+
+.font70[
+### Uso de operadores matemáticos - .black[Divisão (/) - Empilhar]
+]
+
+.pull-right-1[
+
+```r
+g2/g4/g3
+```
+]
+
+--
+
+.pull-left-2[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-62-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+name: barra
+## Pacote Patchwork - Combine gráficos
+
+.font65[
+### Uso de operadores matemáticos - .black[Barra vertical (|) - Lado a Lado]]
+
+.pull-right-1[
+
+```r
+g2 | (g4/g3)
+```
+]
+
+--
+
+.pull-left-2[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-63-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+
+## Pacote Patchwork - Combine gráficos
+
+.font65[
+### Uso de operadores matemáticos - .black[Barra vertical (|) - Lado a Lado]]
+
+.pull-right-1[
+
+```r
+(g3/g1) | (g4/g2)
+```
+]
+
+--
+
+.pull-left-2[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-64-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+
+## Pacote Patchwork - Combine gráficos
+
+.font65[
+### Uso de operadores matemáticos - .black[Barra vertical (|) - Lado a Lado]]
+
+.pull-right-1[
+
+```r
+(g4 / g2 /g3) | g1
+```
+]
+
+--
+
+.pull-left-2[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-65-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Pacote Patchwork - Combine gráficos
+
+.font70[
+### Uso de operadores matemáticos - .black[Barra vertical (|) - Lado a Lado]]
+
+.pull-right-1[
+
+```r
+(g1 | g2 | g3)/g4
+```
+]
+
+--
+
+.pull-left-2[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-66-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+name: plotlayout
+## Pacote Patchwork - Combine gráficos
+
+.font70[### Disposição, área e legenda de subgráficos - .black[plot_layout()]
+]
+
+.pull-right-4[
+
+.font90[
+
+```r
+g1 + g2 + g3 + g4 + plot_layout(nrow = 3, byrow = F)
+```
+&lt;br&gt;
+
+- Se desejar mais controle sobre a disposição e o espaço ocupado por cada subgráficos use a função .green[plot_layout()].
+- No exemplo, foi especificado que o painel deve ter 3 linhas (.brown[nrow] = 3), e os subgráficos ordenados em função das colunas (.brown[byrow] = F).
+]
+]
+
+--
+
+.pull-left-4[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-67-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+name: widths
+## Pacote Patchwork - Combine gráficos
+
+.font70[### Disposição, área e legenda de subgráficos - .black[plot_layout()]
+]
+
+--
+
+.pull-right-4[
+
+.font90[
+
+```r
+g2 + g1 + g3 + g4 + plot_layout(widths = c(1, 2))
+```
+
+- Especifique uma largura relativa para os subgráficos com argumento .brown[widths].
+- No exemplo, a área destinada aos subgráficos da segunda coluna é o dobro da primeira coluna.
+]
+]
+
+--
+
+.pull-left-4[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-68-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+name: heights
+## Pacote Patchwork - Combine gráficos
+
+.font70[### Disposição, área e legenda de subgráficos - .black[plot_layout()]
+]
+
+--
+
+.pull-right-4[
+
+.font90[
+
+```r
+g2 + g1 + g3 + g4 + plot_layout(heights = c(1, 2))
+```
+
+- Especifique uma altura relativa para os subgráficos com argumento .brown[heights].
+- No exemplo, a área destinada aos subgráficos da segunda linha é o dobro da primeira linha.
+]
+]
+
+--
+
+.pull-left-4[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-69-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Pacote Patchwork - Combine gráficos
+
+.font70[### Disposição, área e legenda de subgráficos - .black[plot_layout()]
+]
+
+--
+
+.pull-right-4[
+
+.font90[
+
+```r
+g1 + g2 + g3 + g4 +
+  plot_layout(widths = c(1, 2), heights = c(1, 2))
+```
+
+- Especifique .brown[widths] e .brown[heights] simultaneamente para maior controle das áreas ocupadas por cada subgráfico.
+]
+]
+
+--
+
+.pull-left-4[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-70-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+name: guides
+## Pacote Patchwork - Combine gráficos
+
+.font70[### Disposição, área e legenda de subgráficos - .black[plot_layout()]
+]
+
+.font70[
+A função .green[plot_layout()] possui o argumento .brown[guides] para tratar da disposição das legendas no painel de subgráficos.
+]
+
+--
+
+.pull-left-4[
+.font80[
+
+```r
+g3 + g4 # sem especificar "guides"
+```
+
+&lt;img src="03-Visualizacao-Dados_files/figure-html/pat5-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+--
+
+.pull-right-4[
+.font80[
+
+```r
+g3 + g4 + plot_layout(guides = 'collect') # legenda ao lado
+```
+
+&lt;img src="03-Visualizacao-Dados_files/figure-html/pat6-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+
+---
+
+## Pacote Patchwork - Combine gráficos
+
+.font70[### Disposição, área e legenda de subgráficos - .black[plot_layout()]
+]
+
+.font70[
+- O argumento .brown[guides] = 'collect' também remove legendas duplicadas.
+]
+
+--
+
+.pull-left-4[
+.font80[
+
+```r
+g3 + g3     # sem especificar "guides"
+```
+
+&lt;img src="03-Visualizacao-Dados_files/figure-html/pat7-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+--
+
+.pull-right-4[
+.font80[
+
+```r
+g3 + g3 + plot_layout(guides = 'collect') # legenda ao lado
+```
+
+&lt;img src="03-Visualizacao-Dados_files/figure-html/pat8-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+
+## Pacote Patchwork - Combine gráficos
+
+.font70[### Posição e direção da legenda
+]
+
+.font70[
+- Modifique a posição e a direção da legenda alterando os argumentos de .green[theme()] do ggplot2. Adicione esta camada ao **Patchwork** usando o operador .red[&amp;].
+]
+
+--
+
+.pull-left-4[
+.font80[
+
+```r
+g3 + g4 +
+  plot_layout(guides = 'collect')
+```
+
+&lt;img src="03-Visualizacao-Dados_files/figure-html/pat9-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+--
+
+.pull-right-4[
+.font80[
+
+```r
+g3 + g4 +
+  plot_layout(guides = 'collect') &amp;
+  theme(legend.position='bottom',
+        legend.direction = "horizontal")
+```
+
+&lt;img src="03-Visualizacao-Dados_files/figure-html/pat10-1.png" style="display: block; margin: auto;" /&gt;
+]
+]
+
+
+---
+name: inset
+## Pacote Patchwork - Combine gráficos
+
+.font70[### Gráfico dentro de outro gráfico - .black[inset_element()]
+]
+
+--
+
+.pull-right-4[
+
+.font90[
+
+```r
+g3 + inset_element(g2,
+                   left = 0.4, bottom = 0.3,
+                   right = 0.95, top = 0.9)
+```
+
+- Use a função .green[inset_element()] para inserir um gráfico dentro de outro gráfico anteriormente especificado.
+- Use coordenadas relativas nos argumentos .brown[left] (esquerda), .brown[bottom] (inferior), .brown[right] (direita), .brown[top] = (superior), para informar a posição de inserção.
+]
+]
+
+--
+
+.pull-left-4[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-71-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+name: annotation
+## Pacote Patchwork - Combine gráficos
+
+.font70[### Adicione textos, títulos, tags... - .black[plot_annotation()]
+]
+
+--
+
+.pull-right-4[
+
+.font90[
+
+```r
+g3 + g1 +
+  plot_layout(guides = 'collect') +
+  plot_annotation(
+  title = 'Inventário Florestal 100%',
+  subtitle = 'Explorando dados de algumas espécies',
+  caption = 'Fonte: O Autor',
+  tag_levels = 'A'
+)
+```
+
+- Use a função .green[plot_annotation()] para adicionar textos descritivos ao painel de gráficos.
+- No exemplo, são usados os argumentos: .brown[title], .brown[subtitle], .brown[caption] e .brown[tag_levels] (etiquetas de subgráficos).
+- Modifique .brown[tag_levels]: '1', 'a', 'I', 'i'
+]
+]
+
+--
+
+.pull-left-4[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-72-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Pacote Patchwork - Combine gráficos
+
+.font70[### Adicione um prefixo e sufixo na etiqueta (tag) - .black[plot_annotation()]
+]
+
+--
+
+.pull-right-4[
+
+.font90[
+
+```r
+g3 + g1 +
+  plot_layout(guides = 'collect') +
+  plot_annotation(
+    title = 'Inventário Florestal 100%',
+    subtitle = 'Explorando dados de algumas espécies',
+    caption = 'Fonte: O Autor',
+    tag_levels = 'A',
+    tag_prefix = 'Fig. ',
+    tag_suffix = ':'
+  )
+```
+
+- Use os argumentos .brown[tag_prefix] e .brown[tag_suffix] para adicionar prefixos e sufixos, respectivamente, à etiqueta dos subgráficos.
+]
+]
+
+--
+
+.pull-left-4[
+&lt;img src="03-Visualizacao-Dados_files/figure-html/unnamed-chunk-73-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+layout: true
+class: with-logo logo-ufpa
+&lt;div class="my-header"&gt;&lt;/div&gt;
+&lt;div class="my-footer"&gt;&lt;span&gt;Prof. Dr. Deivison Venicio Souza (E-mail: deivisonvs@ufpa.br)&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp; &lt;div2&gt;Minicurso: Visualização de dados com ggplot2 e extensões&lt;/div2&gt; &lt;/div&gt;
+
+&lt;!--Slide XX --&gt;
+---
+layout: false
+class: inverse, top, right
+background-image: url(fig/slide-title/arara2.jpg)
+background-size: cover
+
+.font300[
+.yellow[Obrigado!]
+]
+&lt;br&gt;&lt;br&gt;
+
+.white[**Email**:] &lt;a href="mailto:deivisonvs@ufpa.br"&gt;.white[deivisonvs@ufpa.br]&lt;/a&gt;
+
+.white[**Github**:] &lt;a href="https://github.com/DeivisonSouza"&gt;.white[@DeivisonSouza]&lt;/a&gt;
+
+.left[.footnote[.white[Créditos: Imagem de ljwong por Pixabay].]]
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="assets/remark-zoom.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"highlightSpans": true,
+"countIncrementalSlides": false,
+"highlightLanguage": ["r", "css", "yaml"],
+"ratio": "16:9",
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,3 @@
+Nome|DAP|H
+Angelim|100|30
+Mogno|80|20
