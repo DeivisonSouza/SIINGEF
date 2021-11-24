@@ -1,5 +1,5 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file.. -->
+<!-- README.md is generated from README.Rmd. Please edit that file. -->
 <!-- badges: start -->
 <!-- badges: end -->
 <!-- Emprestei a função list_github_files() da Curso-R. (https://github.com/curso-r). A ideia desse readme emprestei da Curso-R. Achei excelente!-->
@@ -65,8 +65,9 @@ IF100%.
 Para facilitar a seguir estão os arquivos .R com os códigos dos slides e
 as aplicações em bases de dados.
 
-| Slide | Link |
-|:------|:-----|
+| Slide                     | Link                                                                |
+|:--------------------------|:--------------------------------------------------------------------|
+| R/03-Visualizacao-Dados.R | <https://deivisonsouza.github.io/SIINGEF/R/03-Visualizacao-Dados.R> |
 
 # Facilitador :deciduous\_tree:
 
