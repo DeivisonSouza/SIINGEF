@@ -78,8 +78,8 @@ library(xaringanExtra)
 use_logo(
   image_url = "fig/slide-title/SIINGEF.jpg",
   position = css_position(top = "1.5em", right = "0.6em"),
-  width = "210px",
-  height = "210px"
+  width = "140px",
+  height = "140px"
 )
 
 use_scribble()
@@ -122,7 +122,7 @@ CustomDT <- function(data){
 <!-- title-slide -->
 
 <br><br><br><br>
-## .font90[Visualização de dados <br> com ggplot2 e extensões] `r anicon::faa("pagelines", animate="horizontal", colour="green")`
+## .font90[Visualização de dados <br> `r anicon::faa("pagelines", animate="horizontal", colour="green")` com ggplot2 e extensões] `r anicon::faa("pagelines", animate="horizontal", colour="green")`
 
 #### **Prof. Dr. Deivison Venicio Souza**
 ##### Universidade Federal do Pará (UFPA) 
@@ -175,7 +175,23 @@ knitr::include_graphics("https://patchwork.data-imaginist.com/reference/figures/
 
 .pull-left-10[
 .font80[
-**Parte 1 - Visualização de dados com .orange[ggplot2]**
+**Parte 1 - Conhecendo o R e o IDE Rstudio**
+
+[1- A linguagem R](#R)
+
+[2 - Por que usar a linguagem R?](#pqR)
+
+[3 - RGui - Download, instalação e interface](#RGui)
+
+[4 - IDE RStudio - Download, instalação e interface](#Rstudio)
+
+]
+]
+
+
+.pull-right-10[
+.font80[
+**Parte 2 - Visualização de dados com .orange[ggplot2]**
 
 [1 - Motivação](#mot)
 
@@ -204,9 +220,17 @@ knitr::include_graphics("https://patchwork.data-imaginist.com/reference/figures/
 ]
 ]
 
-.pull-right-10[
+
+---
+
+<br>
+## Conteúdo
+
+.pull-left-10[
 .pull-down[
 .font80[
+**Parte 2 - Visualização de dados com .orange[ggplot2]** .green[**(cont.)**]
+
 &nbsp;&nbsp;&nbsp;&nbsp;[5.6 - Modificando legendas](#ml)
 
 &nbsp;&nbsp;&nbsp;&nbsp;[5.7 - Modificando títulos e escalas](#mte)
@@ -235,14 +259,9 @@ knitr::include_graphics("https://patchwork.data-imaginist.com/reference/figures/
 ]
 ]
 
----
 
-<br>
-## Conteúdo
-
-.pull-left-10[
+.pull-right-10[
 .font80[
-**Parte 1 - Visualização de dados com .orange[ggplot2]** .green[**(cont.)**]
 
 [8 - Boxplots](#box)
 
@@ -274,10 +293,15 @@ knitr::include_graphics("https://patchwork.data-imaginist.com/reference/figures/
 ]
 
 
-.pull-right-10[
+---
+
+<br>
+## Conteúdo
+
+.pull-left-10[
 .pull-down[
 .font80[
-**Parte 2 - Combinação de gráficos com .orange[Patchwork]**
+**Parte 3 - Combinação de gráficos com .orange[Patchwork]**
 
 [1 - Combine gráficos com pacote "patchwork"](#patchwork)
 
@@ -315,7 +339,234 @@ class: inverse, top, right
 background-image: url(fig/slide-title/arara.jpg)
 background-size: cover
 
-.font200[**.yellow[Parte 1] <br> .white[Visualização de dados <br> com ggplot2]**]
+.font200[**.yellow[Parte 1] <br> .white[Conhecendo o R e <br> o IDE Rstudio]**]
+
+---
+
+layout: true
+class: with-logo logo-ufpa
+<div class="my-header"></div>
+<div class="my-footer"><span>Prof. Dr. Deivison Venicio Souza (E-mail: deivisonvs@ufpa.br)&emsp;&emsp;&emsp;&emsp;&emsp; <div3>Introdução ao R para Análise de Dados</div3>/ <div2>Parte 1 - Introdução à Linguagem de Programação R</div2> </div>
+
+---
+name: R
+## Linguagem R
+
+.pull-left-4[
+.font90[
+- É uma linguagem de programação de computadores de código aberto e gratuita;
+- Criada em 1993: Ross Ihaka e por Robert Gentleman;
+- Departamento de Estatística da Universidade de Auckland, Nova Zelândia;
+- O R foi desenvolvido a partir da Linguagem S.
+]
+]
+
+.pull-right-4[
+.font90[
+**Possui múltiplas facetas:**
+
+- Pacotes para implementação de métodos estatisticos;
+- Pacotes para visualização gráfica elegantes;
+- Pacotes para criação de aplicações web, Dashboard;
+- Pacote para geração de relatórios dinâmicos;
+- Pacotes para criação de apresentações elegantes.
+]
+]
+
+
+.pull-left-7[
+```{r echo=FALSE, out.width='30%', fig.align='center', fig.cap='', dpi=600}
+knitr::include_graphics("https://blog.efpsa.org/wp-content/uploads/2019/04/pic1.png")
+
+```
+
+]
+
+.pull-left-7[
+```{r echo=FALSE, out.width='30%', fig.align='center', fig.cap='', dpi=600}
+knitr::include_graphics("https://ggplot2.tidyverse.org/logo.png")
+```
+]
+
+.pull-left-7[
+```{r echo=FALSE, out.width='30%', fig.align='center', fig.cap='', dpi=600}
+knitr::include_graphics("https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png")
+```
+]
+
+.pull-left-7[
+```{r echo=FALSE, out.width='30%', fig.align='center', fig.cap='', dpi=600}
+knitr::include_graphics("https://tidyverse.tidyverse.org/articles/tidyverse-logo.png")
+```
+]
+
+---
+name: pqR
+## Por que usar a linguagem R?
+
+```{r, echo=FALSE, out.width='50%', fig.align='center', fig.cap='', dpi=600}
+knitr::include_graphics('fig/slide-title/WhyR.png')
+```
+
+---
+name: RGui
+## RGui - Download e instalação
+<br>
+
+**1⁰ Passo**: Acessar a página do projeto R em: https://www.r-project.org/;
+
+**2⁰ Passo**: Do lado esquerdo da página clique sobre o menu .green[CRAN];
+
+**3⁰ Passo**: Será aberta uma página com diversos links de .green[CRAN Mirrors], isto é, espelhos CRAN. 
+<br>
+Veja na tabela a seguir os principais espelhos disponíveis no Brasil.
+<br><br>
+
+.center2[
+```{r echo=FALSE}
+df <- data.frame(Link = 
+                   c("http://cran-r.c3sl.ufpr.br/",
+                     "http://nbcgib.uesc.br/mirrors/cran/", 
+                     "https://cran.fiocruz.br/",
+                     "https://vps.fmvz.usp.br/CRAN/",
+                     "http://brieger.esalq.usp.br/CRAN/"),
+                 Instituição = 
+                   c("Universidade Federal do Paraná - UFPR",
+                     "Center for Comp Biol at Universidade Estadual de Santa Cruz",
+                     "Oswaldo Cruz Foundation, Rio de Janeiro",
+                     "University of São Paulo, São Paulo",
+                     "University of São Paulo, Piracicaba")
+                 )
+
+df %>% 
+   DT::datatable(editable = 'cell', rownames = FALSE, style = "default",
+                 class = "display", width = '750px',
+                 caption = '',
+     options=list(pageLength = 10, dom = 'tip', autoWidth = F,
+       initComplete = htmlwidgets::JS(
+          "function(settings, json) {",
+          paste0("$(this.api().table().container()).css({'font-size': '", "12pt", "'});"),
+          "}")
+       ) 
+     )
+```
+]
+
+---
+
+## RGui - Download e instalação
+<br>
+
+**4⁰ Passo**: Na página http://cran-r.c3sl.ufpr.br/, na seção .green[Download and Install R], clicar em um dos três links, conforme o Sistema Operacional do usuário:
+
+1. Download R for Windows;
+2. Download R for Linux; ou
+3. Download R for MacOS.
+<br>
+
+**5⁰ Passo**: Clicar no link do .green[subdiretório base] ou em o .green[install R for the first time] para instalar o R pela primeira vez;
+<br>
+
+**6⁰ Passo**: Clicar, por exemplo, em .green[Download R-4.1.0. for Windows] (.red[escolha seu SO]). Assim, será iniciado o download do R Development Core Team para o respectivo sistema; e
+<br>
+
+**7⁰ Passo**: Por fim, basta usar o setup baixado para instalar o programa.
+
+---
+
+## RGui - Interface
+<br>
+
+Ao inicializar o **R Development Core Team** pela primeira vez aparecerá a seguinte imagem:
+
+```{r, echo=FALSE, out.width='50%', fig.align='center', fig.cap='R Console'}
+knitr::include_graphics('fig/slide-title/Rgui.png')
+```
+
+---
+
+## RGui - Interface
+
+- No contato inicial do usuário com o RGui tem-se a visão do .green[R Console].
+- O sinal .red[>] é o prompt de comando.
+- Execute as funções .green[demo(), help(), help.start(), q()].
+
+```{r, echo=FALSE, out.width='50%', fig.align='center', fig.cap='R Console'}
+knitr::include_graphics('fig/slide-title/Rgui.png')
+```
+
+---
+
+## RGui - R editor
+
+O RGui possui um .green[R editor] $\rightarrow$ Abrir script.
+
+```{r, echo=FALSE, out.width='50%', fig.align='center', fig.cap='R editor'}
+knitr::include_graphics('fig/slide-title/Reditor.png')
+```
+
+---
+name: Rstudio
+## IDE RStudio - download e instalação
+<br>
+
+O .green[RStudio] é um ambiente de desenvolvimento integrado (*Integrated Development Environment - IDE*) de códigos em R mais comumente usado por usuários da linguagem.
+
+**1⁰ Passo**: Acessar a página do projeto RStudio: https://www.rstudio.com;
+
+**2⁰ Passo**: Products $\rightarrow$ RStudio;
+
+**3⁰ Passo**: Selecionar a versão do RStudio para Desktop;
+
+**4⁰ Passo**: Na edição Open source $\rightarrow$ Download Rstudio Desktop;
+
+**5⁰ Passo**: Por fim, basta usar o setup baixado para instalar o programa.
+<br><br>
+
+```{r, echo=FALSE, out.width='30%', fig.align='center', fig.cap=''}
+knitr::include_graphics('fig/slide-title/RStudio.png')
+```
+
+---
+
+## IDE RStudio - Interface
+
+```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap=''}
+knitr::include_graphics('fig/slide-title/RstudioIG.svg')
+```
+<!-- http://material.curso-r.com/rbase/ -->
+
+---
+
+## IDE RStudio - Interface (Painéis)
+<br>
+
+**Editor**: Painel de desenvolvimento dos códigos R.
+
+**Environment**: Painel onde aparecerão todos os objetos criados no R.
+
+**Console**: Painel para rodar os códigos R e receber outputs.
+
+**Plots**: Painel de saída gráfica.
+
+**History**: Painel que mostra um histórico dos comandos executados na sessão corrente.
+
+**Help**: Painel que mostra a documentação de funções de pacotes, quando solicitada.
+
+**Files**: Painel para identificar arquivos no diretório de trabalho.
+
+**Packages**: Painel que mostra os pacotes instalados. É possível identificar os pacotes carregados na sessão corrente.
+
+
+---
+
+layout: false
+name: conc
+class: inverse, top, right
+background-image: url(fig/slide-title/arara.jpg)
+background-size: cover
+
+.font200[**.yellow[Parte 2] <br> .white[Visualização de dados <br> com ggplot2]**]
 
 .left[.footnote[.white[Créditos: Imagem de IvaCastro por Pixabay].]]
 
@@ -2130,7 +2381,7 @@ class: inverse, top, right
 background-image: url(fig/slide-title/arara.jpg)
 background-size: cover
 
-.font200[**.yellow[Parte 2] <br> .white[Combinação de gráficos <br> com .orange[Patchwork]]**]
+.font200[**.yellow[Parte 3] <br> .white[Combinação de gráficos <br> com .orange[Patchwork]]**]
 
 .left[.footnote[.white[Créditos: Imagem de IvaCastro por Pixabay].]]
 
