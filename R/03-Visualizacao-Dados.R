@@ -1390,6 +1390,44 @@ g2 + g1 + g3 + g4 +
 
 # Têm muito mais...:)
 
+########################
+# Pacote Esquisse
+########################
+# O pacote Esquisse permite criar gráficos com o pacote ‘ggplot2’ de
+# maneira interativa.
+
+# Torna o processo de criar gráficos ggplot2 muito amigável!
+
+# É possível visualizar rapidamente seus dados, exportá-los como ‘PNG’ ou
+# ‘PowerPoint’ e recuperar o código para reproduzir o gráfico.
+
+install.packages("esquisse")
+library(esquisse)
+
+esquisser()
+esquisser(viewer = "browser")
+esquisser(viewer = "pane")
+
+# Vamos utilizar o famoso dataset "iris"...
+# Interface gráfica é baseada no sistema de “arrastar e soltar” para a
+# criação de gráficos.
+
+# Global Environment - datasets - iris
+
+# Ao selecionar qualquer variável quantitativas no eixo X, o sistema
+# automaticamente sugere como melhor visualização o histograma.
+
+# 1 - Experimente "Sepal.Length" em "X"... (Sugestão: histograma)
+
+# Mas, é possível selecionar outros tipos de visualizações.
+# Experimente: BoxPlot
+
+# 2 - Experimente adicionar "Sepal.Width" em "Y"... (Sugestão: gráfico de pontos)
+# 3 - Use "Species" em "color" ...
+
+
+
+
 #----------------------------------
 # Gráficos interativos
 
