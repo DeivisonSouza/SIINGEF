@@ -1033,6 +1033,131 @@ data_sample %>%
 # - Use labeller para modificar os rótulos das facetas.
 
 
+# Modifique temas em ggplot2
+
+# theme_bw
+# theme_classic
+# theme_dark
+# theme_get
+# theme_gray
+# theme_grey
+# theme_light
+# theme_linedraw
+# theme_minimal
+# theme_replace
+# theme_set
+# theme_test
+# theme_update
+# theme_void
+
+data_sample %>%
+  ggplot(aes(x = DAP, y = V)) +       # 1ª camada
+  geom_point() +                      # 2ª camada
+  theme_linedraw()                    # 3ª camada
+
+
+#------------------------------
+# Modifique argumentos na camada theme() para uma customização mais fina
+
+# Largura e cor das linhas de eixos...
+data_sample %>%
+  ggplot(aes(x = DAP, y = V)) +       # 1ª camada
+  geom_point() +                      # 2ª camada
+  theme_linedraw() +                   # 3ª camada
+  theme(
+    axis.line.x=element_line(size=1,colour="black"),
+    axis.line.y=element_line(size=1,colour="black")
+    )
+
+# Largura e cor das linhas de eixos...
+
+data_sample %>%
+  ggplot(aes(x = DAP, y = V)) +       # 1ª camada
+  geom_point() +                      # 2ª camada
+  theme_linedraw() +                   # 3ª camada
+  theme(
+    axis.line.x=element_line(size=1,colour="black"),
+    axis.line.y=element_line(size=1,colour="black"),
+    # axis.line=element_line(size=1,colour="black")
+  )
+
+# Modifique rótulos dos eixos (x e y)...
+
+data_sample %>%
+  ggplot(aes(x = DAP, y = V)) +       # 1ª camada
+  geom_point() +                      # 2ª camada
+  theme_linedraw() +                   # 3ª camada
+  theme(
+    axis.text.x = element_text(colour = "black",
+                               size = 20, family = "times",
+                               angle = 90,),
+    axis.text.y = element_text(colour = "black", size=14,
+                                family = "times"),
+    # axis.text = element_text(colour = "black", size = 34,
+    #                          family = "serif", face = "bold")
+  )
+
+# Modifique título dos eixos (x e y)...
+
+data_sample %>%
+  ggplot(aes(x = DAP, y = V)) +       # 1ª camada
+  geom_point() +                      # 2ª camada
+  theme_linedraw() +                   # 3ª camada
+  theme(
+    axis.title.x = element_text(colour="red", size=20, family="serif"),
+    axis.title.y = element_text(colour="green", size=30, family="serif")
+  )
+
+# Remova borda do gráfico...
+
+data_sample %>%
+  ggplot(aes(x = DAP, y = V)) +       # 1ª camada
+  geom_point() +                      # 2ª camada
+  theme_linedraw() +                  # 3ª camada
+  theme(
+    panel.border=element_blank()
+  )
+
+# Adicione e customize título e subtítulo do gráfico...
+
+data_sample %>%
+  ggplot(aes(x = DAP, y = V)) +       # 1ª camada
+  geom_point() +                      # 2ª camada
+  theme_linedraw() +                  # 3ª camada
+  ggtitle(label = "Título", subtitle = "Subtítulo") +
+  theme(
+    plot.title = element_text(hjust=0.5,size=14,
+                              face="bold", family="serif"),
+    plot.subtitle = element_text(hjust=0.5, size=14,
+                                 face="italic", family="serif")
+  )
+
+# Modifique escala dos eixos...
+
+data_sample %>%
+  ggplot(aes(x = DAP, y = V)) +       # 1ª camada
+  geom_point() +                      # 2ª camada
+  theme_linedraw() +                  # 3ª camada
+  scale_x_continuous(limits = c(30, 100),
+                   breaks = c(seq(from=30, to=100, by=10)))
+
+# Customize legenda...
+
+data_sample %>%
+  filter(Nome_Especie != "Acapu") %>%
+  ggplot() +                                    # 1ª camada
+  geom_bar(aes(x = Nome_Especie, fill = Selecao),
+           position = "dodge",
+           stat = "count") +                    # 2ª camada
+  theme(
+    legend.text = element_text(size=18, colour="black",
+                               family="serif", face="bold"),
+    #legend.position = "bottom", #(top, left, right, bottom)
+    #legend.margin = margin(2, 2, 2, 2),
+    #legend.title = element_blank(),
+    #legend.direction = "horizontal"
+  )
+
 #----------------------------------------------------------
 # 12 - Salve um ggplot - Função ggsave()
 #----------------------------------------------------------
@@ -1264,5 +1389,19 @@ g2 + g1 + g3 + g4 +
   )
 
 # Têm muito mais...:)
+
+#----------------------------------
+# Gráficos interativos
+
+# Pacote para visualização interativa:
+
+# plotly.
+# highcharter.
+# googleVis.
+# leaflet.
+# muito mais
+
+# No futuro esse material será engrandecido com pacotes interativos...
+
 
 # Fim--------------------
