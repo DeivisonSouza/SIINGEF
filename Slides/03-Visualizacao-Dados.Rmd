@@ -143,7 +143,7 @@ class: with-logo logo-ufpa
 <br>
 ## Objetivos
 <br><br>
-Ao final desta terceira parte (.blue[Visualização de dados com ggplot2 e extensões]) espera-se que os participantes possam alcançar conhecimentos para...
+Ao final deste minicurso (.blue[Visualização de dados com ggplot2 e extensões]) espera-se que os participantes possam alcançar conhecimentos para...
 <br><br>
 
 * Construir gráficos no R usando funções do pacote **ggplot2**; e
@@ -346,7 +346,7 @@ background-size: cover
 layout: true
 class: with-logo logo-ufpa
 <div class="my-header"></div>
-<div class="my-footer"><span>Prof. Dr. Deivison Venicio Souza (E-mail: deivisonvs@ufpa.br)&emsp;&emsp;&emsp;&emsp;&emsp; <div3>Introdução ao R para Análise de Dados</div3>/ <div2>Parte 1 - Introdução à Linguagem de Programação R</div2> </div>
+<div class="my-footer"><span>Prof. Dr. Deivison Venicio Souza (E-mail: deivisonvs@ufpa.br)&emsp;&emsp;&emsp;&emsp;&emsp; <div2>Minicurso: Visualização de dados com ggplot2 e extensões</div2> </div>
 
 ---
 name: R
